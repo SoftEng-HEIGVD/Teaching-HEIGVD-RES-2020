@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * 
  * @author Olivier Liechti
  */
-public class BufferedIOBenc	hmark {
+public class BufferedIOBenchmark {
 
 	static final Logger LOG = Logger.getLogger(BufferedIOBenchmark.class.getName());
 	private final Timer timer;
