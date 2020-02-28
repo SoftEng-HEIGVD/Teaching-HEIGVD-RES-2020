@@ -5,14 +5,9 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Upcoming deadlines
 
-* <u>**Thursday**</u>, February 27th: everybody must have
-  - setup GitHub (with SSH), forked and cloned the "chill" project
+* <u>**Sunday**</u>, March 8th: everybody must have (individually):
+  - completed the [Java IO lab](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020-Labo-Java-IO)
 
-  - setup maven and been able to build "chill" on the command line
-
-  - setup IDEA (with Lombok project)
-
-  - either successfully added one beer (with a unit test and a production class) and submitted a PR or filed an issue in the upstream server to precisely describe what has not worked
 
 ## General links
 
@@ -24,6 +19,11 @@ This is where you will find lecture notes, slides and some of the examples prese
 * [Here](https://www.youtube.com/playlist?list=PLfKkysTy70QaN-uez0K4UpSpVUbt8ETpk) is  the Youtube playlist that presents the first assignment material.
 
 ## Week 2
+
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/slides/01-JavaIOs.pdf) are the slides
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/lectures/01-Lecture1-JavaIOs.md) are the lecture notes
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/01-BufferedIOBenchmark/BufferedIOBenchmark) is the project used to present the impact of buffering on performance
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020-Labo-Java-IO) is the repo for the lab, which we will work on during weeks 2 and 3
 
 ## Week 3
 
