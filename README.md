@@ -27,6 +27,11 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Week 3
 
+* We are still using the same deck as last week
+* Same thing for the lecture notes
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/02-FileIOExample/FileIOExample) is the project used to demonstrate File IOs
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/03-CharacterIODemo/CharacterIODemo) is the project used to demonstrate character encoding
+
 ## Week 4
 
 ## Week 5
