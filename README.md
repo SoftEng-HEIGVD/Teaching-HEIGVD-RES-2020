@@ -5,8 +5,9 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Upcoming deadlines
 
-* <u>**Sunday**</u>, March 8th: everybody must have (individually):
-  - completed the [Java IO lab](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020-Labo-Java-IO)
+* <u>**Friday**</u>, March 20th: everybody must be ready to do a demo of the Calculator client-server.
+  - Your code must be available in a GitHub repo
+- <u>**Friday**</u>, March 20th: **execute** the code (with the debugger and Wireshark) and **study** the code of the 3 examples.
 
 
 ## General links
@@ -34,7 +35,18 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Week 4
 
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/slides/02-TcpProgramming.pdf) are the slides
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/05-DumbHttpClient/DumbHttpClient) is an example of a simple TCP client (which does NOT implement the HTTP spec)
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/04-StreamingTimeServer/StreamingTimeServer) is an example of a simple TCP server (streams current time)
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/07-TcpServers/TcpServers) is an example of a multi-threaded TCP server (with workers)
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/06-PresenceApplication/PresenceApplication) is an example of a client-server application (presence)
+* **Make sure that you have a working Wireshark on your machine!**
+* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020-Exercise-Protocol-Design) is the repo for the protocol design exercise
+
 ## Week 5
+
+* Review of protocol design exercise, with **student presentations & demonstrations**
+* Intro to Docker & UDP
 
 ## Week 6
 
@@ -58,3 +70,8 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Week 16
 
+## Past deadlines
+
+~~<u>**Sunday**</u>, March 8th: everybody must have (individually):~~
+
+- ~~completed the [Java IO lab](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020-Labo-Java-IO)~~
