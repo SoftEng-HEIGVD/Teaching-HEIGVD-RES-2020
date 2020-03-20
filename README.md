@@ -65,9 +65,10 @@ This is where you will find lecture notes, slides and some of the examples prese
 * **It will cover everything until TCP programming and the Docker introduction.**
 * During the evaluation, you will very likely have to create and run Docker containers, based on the short procedures presented before.
 
-## Week 8: (Eastern Friday)
+## Week 8: (Easter Friday)
 
 * Read the 2 chapters on [HTTP protocol](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/lectures/04-Lecture4-HTTP.md) and [Web Infrastructures](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/lectures/05-Lecture5-WebInfrastructure.md), to get ready for the lab.
+* Because of the Easter "break", you have 2 weeks to do that. Please do it. Please.
 
 ## Week 9
 
