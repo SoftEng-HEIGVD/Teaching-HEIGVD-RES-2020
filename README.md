@@ -45,30 +45,83 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Week 5
 
-* Review of protocol design exercise, with **student presentations & demonstrations**
-* Intro to Docker & UDP
+* ~~Review of protocol design exercise, with **student presentations & demonstrations**~~
+* ~~Intro to Docker & UDP~~
+* **COVID-19 RESPONSE PLAN**
+* Important: please take the time to **study** all the lecture notes until TCP programming. **Make sure that you know how to implement a client and a server (also a multi-threaded one)**. If you are stuck, or if there is something that you do not understand in the code examples, SHOOT OUT.
+* **There is still a test coming up in 2 weeks!!**
 
 ## Week 6
 
+* **Review the protocol specification. We will look at your proposals, identify issues and walk you through our specification.** As mentioned during the last lecture, be ready to write a protocol spec in an upcoming evaluation (test and/or exam).
+* **Focus on Docker introduction**. Here our goal is to understand what Docker is and why it is a useful technology that we must all master. 
+* We will **use videos to share knowledge and lab procedures** do get familiar with the basics (installation, creation of images with `docker build` and launching of containers with `docker run`).
+* This **introduction is critical for the follow-up weeks**.
+* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+
 ## Week 7: Written test (April 3rd)
+
+* **We maintain the evaluation as scheduled**. We still need to figure out the logistics, but everyone must be available on Teams on April 3rd, at 10:25 sharp. If for some reason you are unavailable at this time, please reach out to me BEFORE the time.
+* **It will cover everything until TCP programming and the Docker introduction.**
+* During the evaluation, you will very likely have to create and run Docker containers, based on the short procedures presented before.
 
 ## Week 8: (Eastern Friday)
 
+* Read the 2 chapters on [HTTP protocol](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/lectures/04-Lecture4-HTTP.md) and [Web Infrastructures](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/lectures/05-Lecture5-WebInfrastructure.md), to get ready for the lab.
+
 ## Week 9
+
+* **We start to present the HTTP protocol**, so that you can get started with the HTTP infrastructure (long) lab. We are preparing videos to present this material.
+* In this lab, we will use Docker to create a complete web infrastructure with a reverse proxy and several HTTP servers.
+* **We start working on the HTTP infrastructure lab**. We already have a series of 12 webcasts (~6 hours) that guide you through the process, so we are in good shape.
+* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
 
 ## Week 10
 
+* We continue with our presentation of HTTP in videos for the theoretical part.
+* We continue with the HTTP infrastructure lab.
+* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+
 ## Week 11
+
+* We complete the HTTP infrastructure lab.
+* We complete the HTTP infrastructure lab.
+* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
 
 ## Week 12: Written test (May 15th)
 
-## Week 13: (Ascencion)
+* **We maintain the date for the evaluation, which will focus on HTTP.** 
+* Both on the protocol aspects (presented in the new videos) and on the infrastructure aspects (presented in new videos and put in practice in the lab)
 
-## Week 14
+## Week 13: ~~(Ascencion, courtesy of COVID-19)~~
 
-## Week 15
+* We introduce UDP programming, with videos.
+* We start with the "Orchestra" lab.
+* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
 
-## Week 16
+## Week 14:
+
+* We continue with UDP programming, with videos.
+* We complete the "Orchestra" lab.
+* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+
+## Week 15:
+
+* We introduce the SMTP protocol.
+* We start the SMTP lab (we already have webcasts that walk you through the procedures)
+* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+
+## Week 16:
+
+* We complete the theoretical part of the SMTP protocol.
+* We complete the SMTP lab
+* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+
+
+
+## [at this point, calendar is still subject to change...]
+
+
 
 ## Past deadlines
 
