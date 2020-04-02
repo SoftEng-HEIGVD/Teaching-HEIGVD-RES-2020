@@ -7,7 +7,8 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 * <u>**Thursday**</u>, April 2nd: everybody must have **studied the material about TCP programming in Java** (and prepared questions for things that are not clear, so that we can review them during the live session). Everybody must have **executed and studied the code of the example projects**. In particular, the structure of the multi-threaded server must be well understood.
 - <u>**Thursday**</u>, April 2nd: **ideally**, some people will have started the exercise of specifying the "calculator protocol", possibly even the implementation in Java. If this is the case, the students could present their solution so that we can discuss it together (and so that other people can learn from them).
-- **Thursday**, April 9th: date of the **first test**, covering Java IOs, TCP programming and Docker introduction.
+- ~~**Thursday**, April 9th: date of the **first test**, covering Java IOs, TCP programming and Docker introduction.~~
+- **REVISED SCHEDULED !!!! Thursday**, April 23rd: date of the **first test**, covering Java IOs, TCP programming and Docker introduction.
 
 
 ## General links
@@ -51,7 +52,7 @@ This is where you will find lecture notes, slides and some of the examples prese
 * Important: please take the time to **study** all the lecture notes until TCP programming. **Make sure that you know how to implement a client and a server (also a multi-threaded one)**. If you are stuck, or if there is something that you do not understand in the code examples, SHOOT OUT.
 * **There is still a test coming up in 2 weeks!!**
 
-## Week 6
+## ~~Week 6~~
 
 * Study TCP material (slides and lecture notes)
 * Study the code examples
@@ -59,25 +60,27 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Week 7
 
-* **Review the protocol specification. We will look at your proposals, identify issues and walk you through our specification.** As mentioned during the last lecture, be ready to write a protocol spec in an upcoming evaluation (test and/or exam).
+* ~~**Review the protocol specification. We will look at your proposals, identify issues and walk you through our specification.** As mentioned during the last lecture, be ready to write a protocol spec in an upcoming evaluation (test and/or exam).~~
+* Watch and [study the video](https://www.youtube.com/watch?v=95GwsyiSMXI&list=PLfKkysTy70QaSEH6AqwIzVqHJKId73sqR&index=2&t=1s) describing the solution to the **CALC protocol**.
 * **Focus on Docker introduction**. Here our goal is to understand what Docker is and why it is a useful technology that we must all master. 
-* We will **use videos to share knowledge and lab procedures** do get familiar with the basics (installation, creation of images with `docker build` and launching of containers with `docker run`).
+* We will **use [videos](https://www.youtube.com/playlist?list=PLfKkysTy70QbseGZcVbpTXhas2xrXKk61) to share knowledge and lab procedures** do get familiar with the basics (installation, creation of images with `docker build` and launching of containers with `docker run`).
 * This **introduction is critical for the follow-up weeks**.
-* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
 
 ## Week 8: Written test (April 9th)
 
-* **We maintain the evaluation as scheduled**. We still need to figure out the logistics, but everyone must be available on Teams on April 3rd, at 10:25 sharp. If for some reason you are unavailable at this time, please reach out to me BEFORE the time.
-* **It will cover everything until TCP programming and the Docker introduction.**
-* During the evaluation, you will very likely have to create and run Docker containers, based on the short procedures presented before.
+* ~~**We maintain the evaluation as scheduled**. We still need to figure out the logistics, but everyone must be available on Teams on April 3rd, at 10:25 sharp. If for some reason you are unavailable at this time, please reach out to me BEFORE the time.~~
+* ~~**It will cover everything until TCP programming and the Docker introduction.**~~
+* ~~During the evaluation, you will very likely have to create and run Docker containers, based on the short procedures presented before.~~
 
 ## Week 8': (Easter Break)
 
+* **Catch up on TCP programming, protocol design and Docker. Get ready for test.**
 * Read the 2 chapters on [HTTP protocol](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/lectures/04-Lecture4-HTTP.md) and [Web Infrastructures](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/lectures/05-Lecture5-WebInfrastructure.md), to get ready for the lab.
 * During the break, please read these chapters to be ready to start the big "web infra" lab the following week.
 
 ## Week 9
 
+* **THE FIRST WRITTEN TEST IS RESCHEDULED HERE.**
 * **We start to present the HTTP protocol**, so that you can get started with the HTTP infrastructure (long) lab. We are preparing videos to present this material.
 * In this lab, we will use Docker to create a complete web infrastructure with a reverse proxy and several HTTP servers.
 * **We start working on the HTTP infrastructure lab**. We already have a series of 12 webcasts (~6 hours) that guide you through the process, so we are in good shape.
