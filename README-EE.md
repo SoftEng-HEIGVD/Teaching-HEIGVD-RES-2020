@@ -1,4 +1,4 @@
-# Teaching-HEIGVD-RES-2020
+# Teaching-HEIGVD-RES-2020 (THIS IS THE PLANNING FOR RES-C STUDENTS)
 This is the main repo for the course RES, taught at HEIG-VD in 2020. 
 
 This is where you will find lecture notes, slides and some of the examples presented in the class. We will also keep links to the different repos used throughout the semester (for assignments).
