@@ -2,22 +2,24 @@
 
 ## Table of Contents
 
-1. [Objectives](#Objectives)
-2. [Lecture](#Lecture)
-   1. [Client-Server Programming](#ClientServerProgramming)
-   1. [The TCP Protocol](#TCPProtocol)
-   1. [The Socket API](#SocketAPI)
-   1. [So… What Do Servers and Clients Do With the Socket API?](#UsingTheSocketApi)
-   1. [Handling Concurrency in TCP Server](#HandlingConcurrency)
-      1. [Single Process, Single-Threaded, Blocking Servers](#SingleProcessSingleThreadedBlocking)
-      1. [Multi Process, Single-Threaded, Blocking Servers](#MultiProcessSingleThreadedBlocking)
-      1. [Single Process, Multi-Threaded, Blocking Servers](#SingleProcessMultiThreadedBlocking)
-      1. [Single Process, Single-Threaded, Non-Blocking Servers (multiplexing)](#SingleProcessSingleThreadedNonBlockingMultiplexing)
-      1. [Single Process, Single-Threaded, Non-Blocking Servers (asynchronous programming)](#SingleProcessSingleThreadedNonBlockingAsynchronous)
-3. [Resources](#Resources)
-   1. [MUST read](#ResourcesMustRead)
-   2. [Additional Resources](#ResourcesAdditional)
-4. [What Should I Know For The Test And The Exam?](#Exam)
+- [Lecture 2: TCP Programming](#lecture-2-tcp-programming)
+	- [Table of Contents](#table-of-contents)
+	- [<a name="Objectives"></a>Objectives](#objectives)
+	- [<a name="Lecture"></a>Lecture](#lecture)
+		- [<a name="ClientServerProgramming"></a>1. Client-Server Programming](#1-client-server-programming)
+		- [<a name="TCPProtocol"></a>2. The TCP Protocol](#2-the-tcp-protocol)
+		- [<a name="SocketAPI"></a>3. The Socket API](#3-the-socket-api)
+		- [<a name="UsingTheSocketApi"></a>4. So… What Do Servers and Clients Do With the Socket API?](#4-so-what-do-servers-and-clients-do-with-the-socket-api)
+		- [<a name="HandlingConcurrency"></a>5. Handling Concurrency in TCP Servers](#5-handling-concurrency-in-tcp-servers)
+			- [<a name="SingleProcessSingleThreadedBlocking"></a>5.1. Single Process, Single-Threaded, Blocking Servers](#51-single-process-single-threaded-blocking-servers)
+			- [<a name="MultiProcessSingleThreadedBlocking"></a>5.2. Multi Process, Single-Threaded, Blocking Servers](#52-multi-process-single-threaded-blocking-servers)
+			- [<a name="SingleProcessMultiThreadedBlocking"></a>5.3. Single Process, Multi-Threaded, Blocking Servers](#53-single-process-multi-threaded-blocking-servers)
+			- [<a name="SingleProcessSingleThreadedNonBlockingMultiplexing"></a>5.4. Single Process, Single-Threaded, Non-Blocking Servers (multiplexing)](#54-single-process-single-threaded-non-blocking-servers-multiplexing)
+			- [<a name="SingleProcessSingleThreadedNonBlockingAsynchronous"></a>5.5. Single Process, Single-Threaded, Non-Blocking Servers (asynchronous programming)](#55-single-process-single-threaded-non-blocking-servers-asynchronous-programming)
+	- [<a name="Resources"></a>Resources</a>](#resourcesa)
+		- [<a name="ResourcesMustRead"></a>MUST read](#must-read)
+		- [<a name="ResourcesAdditional"></a>Additional resources](#additional-resources)
+	- [<a name="Exam"></a>What Should I Know For The Test and The Exam?](#what-should-i-know-for-the-test-and-the-exam)
 
 
 ## <a name="Objectives"></a>Objectives
@@ -238,7 +240,7 @@ To improve the situation and to be able to handle several clients concurrently, 
 
 The model works as follows: the server starts in a first process, which binds a socket and accepts incoming connection requests. **Each time a client makes a connection request, a child process is forked**. Since a child process inherits file descriptors from its parent, the new process has a socket that is ready to use for talking with the client. At this point, we thus have two processes that work in parallel: the parent does not care about the first client any more and can go back to listening for other clients, while the child can take care of the client and service its request.
 
-The following code snippet, which is part of the great [Beej's Guide to Network Programming](http://www.beej.us/guide/bgnet/output/html/multipage/index.html), shows how this can be implemented in C (the complete code is available [here](http://www.beej.us/guide/bgnet/output/html/multipage/clientserver.html#simpleserver)):
+The following code snippet, which is part of the great [Beej's Guide to Network Programming](http://beej.us/guide/bgnet/html/), shows how this can be implemented in C (the complete code is available [here](http://beej.us/guide/bgnet/html/#a-simple-stream-server)):
 
 ```
 printf("server: waiting for connections...\n");
@@ -394,7 +396,7 @@ To understand how multiplexing works, **let us take the analogy of a restaurant*
 
 * **With multiplexing**, the idea is to assign a number of tables to each waiter (maybe there is one, maybe there are several). The job of the waiter is now a bit different. His job is to have an eye on what is happening at each of *his* tables. Is anyone out of bread at any of my tables? Is anyone calling me at any of my tables? Is anyone asking for the bill at one of my tables? It is an interesting idea, but we have to be careful about the time it takes to check the status of all assigned tables. Imagine a waiter who would have to check what is happening at 100 tables. He would not have the time to do anything else (performance is an issue with some of the related system calls).
 
-How does it work in practice? We have mentioned special system calls before. The `select()` and `poll()` functions are two of them. They work with sockets that have been put in a special, *non-blocking* state. As a result, the usual calls (`accept()`, `read()`, `write()`) do not block the execution of the current thread. The `select()` and `poll()` functions are blocking, but they allow the programmer to give a list of sockets. The execution of the thread will block until *something* happens to *at least one* of the sockets in the list. Have a look at [Beej's Guide to Network Programming](http://www.beej.us/guide/bgnet/output/html/multipage/advanced.html#select), which has a section dedicated to this topic with code examples.
+How does it work in practice? We have mentioned special system calls before. The `select()` and `poll()` functions are two of them. They work with sockets that have been put in a special, *non-blocking* state. As a result, the usual calls (`accept()`, `read()`, `write()`) do not block the execution of the current thread. The `select()` and `poll()` functions are blocking, but they allow the programmer to give a list of sockets. The execution of the thread will block until *something* happens to *at least one* of the sockets in the list. Have a look at [Beej's Guide to Network Programming](http://beej.us/guide/bgnet/html/), which has a section dedicated to this topic with code examples.
 
 
 #### <a name="SingleProcessSingleThreadedNonBlockingAsynchronous"></a>5.5. Single Process, Single-Threaded, Non-Blocking Servers (asynchronous programming)
@@ -493,7 +495,7 @@ node server.js
 
 * A [section](http://www.tcpipguide.com/free/t_TCPIPTransportLayerProtocolsTransmissionControlPro.htm) of the TCP/IP Guide dedicated to TCP, if you need a refresh on that topic. 
 
-* [Beej's Guide To Network Programming](http://www.beej.us/guide/bgnet/output/html/multipage/index.html), which a great resource if you want to use the Socket API in C. 
+* [Beej's Guide To Network Programming](http://beej.us/guide/bgnet/html/), which a great resource if you want to use the Socket API in C. 
 
 * A [nice course](http://www.cs.dartmouth.edu/~campbell/cs50/socketprogramming.html) about network programming with the Socket API in C. 
 
