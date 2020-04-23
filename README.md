@@ -85,7 +85,7 @@ This is where you will find lecture notes, slides and some of the examples prese
   * observation
   * codes de status
 * For the lecture notes, study this chapter:
-  * [Lecture 4 - HTTP]([lectures/04-Lecture4-HTTP.md)
+  * [Lecture 4 - HTTP](lectures/04-Lecture4-HTTP.md)
 * For the slides, look at:
   * [Lecture 4 - HTTP](slides/04-HTTPProtocol.pdf)
 * **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
