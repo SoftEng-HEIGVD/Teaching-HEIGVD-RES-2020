@@ -102,7 +102,7 @@ This is where you will find lecture notes, slides and some of the examples prese
 * We continue with the HTTP infrastructure lab.
 * **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
 
-## Week 12: Written test (May 15th)
+## Week 12
 
 * We continue with the HTTP infrastructure lab.
 * ~~We maintain the date for the evaluation, which will focus on HTTP.**~~ 
@@ -112,19 +112,19 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 * We **complete** the HTTP infrastructure lab.
 
-## Week 14:
+## Week 14
 
 * We introduce UDP programming, with videos.
 * We start the "Orchestra" lab.
 * **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
 
-## Week 15:
+## Week 15
 
 * We present the SMTP protocol.
 * We complete the "Orchestra" lab.
 * **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
 
-## Week 16:
+## Week 16
 
 * Second written test.
 * **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
