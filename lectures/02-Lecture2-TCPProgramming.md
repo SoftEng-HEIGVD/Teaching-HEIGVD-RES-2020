@@ -116,7 +116,7 @@ What the client does…
 The details of the syntax depend on the programming language used to implement the client and/or the server. As mentioned before, the Socket API is available in pretty much every programming language. Here are some pointers to API documentations that you will get you started:
 
 * [Java](http://docs.oracle.com/javase/7/docs/api/java/net/package-summary.html)
-* [C](http://beej.us/guide/bgnet/output/html/multipage/index.html) This is a great guide, which will provide you all the information you need to write client-server applications in C. Check it out!
+* [C](http://beej.us/guide/bgnet/html/) This is a great guide, which will provide you all the information you need to write client-server applications in C. Check it out!
 * [python](http://docs.python.org/2/library/socket.html)
 * [Node.js](http://nodejs.org/api/net.html)
 * [Microsoft .Net](http://msdn.microsoft.com/en-us/library/System.Net.Sockets%28v=vs.110%29.aspx)
@@ -180,7 +180,7 @@ Let us compare 5 alternatives:
 * mono process, single-threaded, non-blocking servers (multiplexing)
 * mono process, single-threaded, non-blocking servers (asynchronous programming)
 
-####<a name="SingleProcessSingleThreadedBlocking"></a>5.1. Single Process, Single-Threaded, Blocking Servers
+#### <a name="SingleProcessSingleThreadedBlocking"></a>5.1. Single Process, Single-Threaded, Blocking Servers
 
 This is **the simplest type of server that you can write**, but it as a limitation that makes it almost unviable. Indeed, this type of server is able to **talk to only one client at the time**. For some stateless protocols (where the client and the server communicate during a very short period) and when the traffic is very low, it might be an option, but frankly… Consider the following Java code:
 
@@ -232,7 +232,7 @@ The following line, which is used to set the socket in listening mode and to acc
 
 Have a look at the [StreamingTimeServer](../examples/04-StreamingTimeServer) example, which shows how a very (too) simple TCP server can be implemented in Java.
 
-####<a name="MultiProcessSingleThreadedBlocking"></a>5.2. Multi Process, Single-Threaded, Blocking Servers
+#### <a name="MultiProcessSingleThreadedBlocking"></a>5.2. Multi Process, Single-Threaded, Blocking Servers
 
 To improve the situation and to be able to handle several clients concurrently, a first idea is to use multiple processes. This was the standard approach for a long time, when servers where written in C and before multi-threading libraries became popular. The apache httpd server used (and still gives the option to use) this method.
 
@@ -269,7 +269,7 @@ while(1) {  // main accept() loop
 
 While this approach works, it is not perfect and **can show limitations under heavy load**. Forking a process is a relatively **expensive operation** (in terms of time and resource consumption). This is why we say that the approach does not scale very well.
 
-####<a name="SingleProcessMultiThreadedBlocking"></a>5.3. Single Process, Multi-Threaded, Blocking Servers
+#### <a name="SingleProcessMultiThreadedBlocking"></a>5.3. Single Process, Multi-Threaded, Blocking Servers
 
 Another approach, which has become very popular with the rise of the Java platform and of multi-threading libraries, is to **rely on multiple threads instead of multiple processes**. Remember that a thread is often described as a **lightweight process** (this indicates that there is **less overhead** in thread creation and switching, in comparison with process creation and switching).
 
@@ -384,7 +384,7 @@ Even if threads are more lightweight than processes, this approach has also show
 
 If you want to compare the behavior of single-threaded and multi-threaded servers in Java, have a loot at the [TcpServers example](../examples/07-TcpServers).
 
-####<a name="SingleProcessSingleThreadedNonBlockingMultiplexing"></a>5.4. Single Process, Single-Threaded, Non-Blocking Servers (multiplexing)
+#### <a name="SingleProcessSingleThreadedNonBlockingMultiplexing"></a>5.4. Single Process, Single-Threaded, Non-Blocking Servers (multiplexing)
 
 Even if we are implementing a server with a single process and a single thread, there are ways to handle multiple clients concurrently. What this means is that there are ways to **monitor more than one socket at the time** and to react to incoming data on them. The first one is to set the sockets in a particular state (non-blocking). to use specific system calls. The way to implement this model depends on the operating system (i.e. it depends on the system calls supported by the operating system). While solutions have existed for a long time, they have evolved over the years. 
 
@@ -397,7 +397,7 @@ To understand how multiplexing works, **let us take the analogy of a restaurant*
 How does it work in practice? We have mentioned special system calls before. The `select()` and `poll()` functions are two of them. They work with sockets that have been put in a special, *non-blocking* state. As a result, the usual calls (`accept()`, `read()`, `write()`) do not block the execution of the current thread. The `select()` and `poll()` functions are blocking, but they allow the programmer to give a list of sockets. The execution of the thread will block until *something* happens to *at least one* of the sockets in the list. Have a look at [Beej's Guide to Network Programming](http://www.beej.us/guide/bgnet/output/html/multipage/advanced.html#select), which has a section dedicated to this topic with code examples.
 
 
-####<a name="SingleProcessSingleThreadedNonBlockingAsynchronous"></a>5.5. Single Process, Single-Threaded, Non-Blocking Servers (asynchronous programming)
+#### <a name="SingleProcessSingleThreadedNonBlockingAsynchronous"></a>5.5. Single Process, Single-Threaded, Non-Blocking Servers (asynchronous programming)
 
 There is another way to handle multiple connections at the same time, with a single process and a single thread. It also consists of using non-blocking IOs, but implies a different programming style and control flow structure. It is associated with an event-based approach and with the use of callback functions.
 

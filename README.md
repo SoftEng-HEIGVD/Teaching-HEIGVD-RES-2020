@@ -20,25 +20,25 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Week 2
 
-* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/slides/01-JavaIOs.pdf) are the slides
-* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/lectures/01-Lecture1-JavaIOs.md) are the lecture notes
-* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/01-BufferedIOBenchmark/BufferedIOBenchmark) is the project used to present the impact of buffering on performance
+* [Here](slides/01-JavaIOs.pdf) are the slides
+* [Here](lectures/01-Lecture1-JavaIOs.md) are the lecture notes
+* [Here](examples/01-BufferedIOBenchmark/BufferedIOBenchmark) is the project used to present the impact of buffering on performance
 * [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020-Labo-Java-IO) is the repo for the lab, which we will work on during weeks 2 and 3
 
 ## Week 3
 
 * We are still using the same deck as last week
 * Same thing for the lecture notes
-* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/02-FileIOExample/FileIOExample) is the project used to demonstrate File IOs
-* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/03-CharacterIODemo/CharacterIODemo) is the project used to demonstrate character encoding
+* [Here](examples/02-FileIOExample/FileIOExample) is the project used to demonstrate File IOs
+* [Here](examples/03-CharacterIODemo/CharacterIODemo) is the project used to demonstrate character encoding
 
 ## Week 4
 
-* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/slides/02-TcpProgramming.pdf) are the slides
-* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/05-DumbHttpClient/DumbHttpClient) is an example of a simple TCP client (which does NOT implement the HTTP spec)
-* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/04-StreamingTimeServer/StreamingTimeServer) is an example of a simple TCP server (streams current time)
-* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/07-TcpServers/TcpServers) is an example of a multi-threaded TCP server (with workers)
-* [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/tree/master/examples/06-PresenceApplication/PresenceApplication) is an example of a client-server application (presence)
+* [Here](slides/02-TcpProgramming.pdf) are the slides
+* [Here](examples/05-DumbHttpClient/DumbHttpClient) is an example of a simple TCP client (which does NOT implement the HTTP spec)
+* [Here](examples/04-StreamingTimeServer/StreamingTimeServer) is an example of a simple TCP server (streams current time)
+* [Here](examples/07-TcpServers/TcpServers) is an example of a multi-threaded TCP server (with workers)
+* [Here](examples/06-PresenceApplication/PresenceApplication) is an example of a client-server application (presence)
 * **Make sure that you have a working Wireshark on your machine!**
 * [Here](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020-Exercise-Protocol-Design) is the repo for the protocol design exercise
 
@@ -71,7 +71,7 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Week 8: (Easter Friday)
 
-* Read the 2 chapters on [HTTP protocol](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/lectures/04-Lecture4-HTTP.md) and [Web Infrastructures](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020/blob/master/lectures/05-Lecture5-WebInfrastructure.md), to get ready for the lab.
+* Read the 2 chapters on [HTTP protocol](lectures/04-Lecture4-HTTP.md) and [Web Infrastructures](lectures/05-Lecture5-WebInfrastructure.md), to get ready for the lab.
 * Because of the Easter "break", you have 2 weeks to do that. Please do it. Please.
 
 ## Week 9
