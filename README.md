@@ -5,7 +5,7 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Upcoming deadlines (tentative schedule)
 
-* Thursday, May 28th: deadline to submit the **HTTP infrastructure** lab (which we start **next week**).
+* Thursday, May 28th: deadline to submit the **HTTP infrastructure** lab
 * Sunday, June 7th, deadline to submit the **Orchestra lab** (UDP)
 * Friday, June 12th: **second written test**
 
@@ -95,7 +95,10 @@ This is where you will find lecture notes, slides and some of the examples prese
 * We continue with our presentation of HTTP in videos for the theoretical part.
 * **We start working on the HTTP infrastructure lab**. We already have a series of 12 webcasts (~6 hours) that guide you through the process, so we are in good shape.
 * In this lab, we will use Docker to create a complete web infrastructure with a reverse proxy and several HTTP servers.
+* All the instructions for the HTTP infrastructure lab are available in [this repo](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020-Labo-HTTPInfra), with links to the YouTube webcasts.
 * **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+
+
 
 ## Week 11
 
