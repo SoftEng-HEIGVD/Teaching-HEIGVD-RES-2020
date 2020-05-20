@@ -5,7 +5,8 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Upcoming deadlines (tentative schedule)
 
-* Thursday, May 28th: deadline to submit the **HTTP infrastructure** lab
+* ~Thursday, May 28th: deadline to submit the **HTTP infrastructure** lab~
+* Monday, June 1st: deadline to submit the **HTTP infrastructure** lab
 * Sunday, June 7th, deadline to submit the **Orchestra lab** (UDP)
 * Friday, June 12th: **second written test**
 
