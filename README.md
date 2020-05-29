@@ -5,10 +5,10 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Upcoming deadlines (tentative schedule)
 
-* ~Thursday, May 28th: deadline to submit the **HTTP infrastructure** lab~
+* ~~Thursday, May 28th: deadline to submit the **HTTP infrastructure** lab~~
 * Monday, June 1st: deadline to submit the **HTTP infrastructure** lab
-* Sunday, June 7th, deadline to submit the **Orchestra lab** (UDP)
-* Friday, June 12th: **second written test**
+* Friday, June 19th: **second written test**
+* Sunday, June 26th, deadline to submit the **Orchestra lab** (UDP)
 
 ## General links
 
@@ -116,28 +116,22 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 * We **complete** the HTTP infrastructure lab.
 
-## Week 14
+## Week 14 (Friday, May 29th)
 
-* We introduce UDP programming, with videos.
-* We start the "Orchestra" lab.
-* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+* We introduce UDP programming
 
-## Week 15
+## Week 15 (Friday, June 5th)
 
-* We present the SMTP protocol.
-* We complete the "Orchestra" lab.
-* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+* We start the "UDP Orchestra" lab.
+* Here is the [repo](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020-Labo-Orchestra).
 
-## Week 16
+## Week 16 (Friday, June 12th)
+
+* We complete the "UDP Orchestra" lab
+
+## Week 17 (Friday, June 19th)
 
 * Second written test.
-* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
-
-
-
-## [at this point, calendar is still subject to change...]
-
-
 
 ## Past deadlines
 
