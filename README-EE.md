@@ -5,10 +5,10 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Upcoming deadlines
 
-* Monday, June 1st: deadline to submit the **HTTP infrastructure** lab
-* ~Thursday, May 28th: deadline to submit the **HTTP infrastructure** lab~
-* Sunday, June 7th, deadline to submit the **Orchestra lab** (UDP)
-* Thursday, June 11th: **second written test**
+* ~~Monday, June 1st: deadline to submit the **HTTP infrastructure** lab~~
+* ~~Thursday, May 28th: deadline to submit the **HTTP infrastructure** lab~~
+* Thursday, June 18th: **second written test**
+* Sunday, June 28th: deadline to submit the **Orchestra lab** (UDP)
 
 
 ## General links
@@ -90,10 +90,12 @@ This is where you will find lecture notes, slides and some of the examples prese
   * observation
   * codes de status
 * For the lecture notes, study this chapter:
+  
   * [Lecture 4 - HTTP](lectures/04-Lecture4-HTTP.md)
 * For the slides, look at:
-  * [Lecture 4 - HTTP](slides/04-HTTPProtocol.pdf)
-
+  
+* [Lecture 4 - HTTP](slides/04-HTTPProtocol.pdf)
+  
 * ## Week 10
 
   * We continue with our presentation of HTTP in videos for the theoretical part.
@@ -114,28 +116,13 @@ This is where you will find lecture notes, slides and some of the examples prese
 
   ## Week 13: ~~(Ascencion, courtesy of COVID-19)~~
 
-  * We **complete** the HTTP infrastructure lab.
+  * We continue the HTTP infrastructure lab.
 
   ## Week 14
 
-  * We introduce UDP programming, with videos.
-  * We start the "Orchestra" lab.
-  * **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
-
-  ## Week 15
-
-  * We present the SMTP protocol.
-  * We complete the "Orchestra" lab.
-  * **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
-
-  ## Week 16
-
-  * Second written test.
-  * **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
-
-
-
-## [at this point, calendar is still subject to change...]
+  * We **complete** the HTTP infrastructure lab.
+  
+  
 
 
 

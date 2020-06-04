@@ -8,7 +8,7 @@ This is where you will find lecture notes, slides and some of the examples prese
 * ~~Thursday, May 28th: deadline to submit the **HTTP infrastructure** lab~~
 * Monday, June 1st: deadline to submit the **HTTP infrastructure** lab
 * Friday, June 19th: **second written test**
-* Sunday, June 26th, deadline to submit the **Orchestra lab** (UDP)
+* Sunday, June 28th, deadline to submit the **Orchestra lab** (UDP)
 
 ## General links
 
