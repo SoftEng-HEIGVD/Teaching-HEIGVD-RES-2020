@@ -43,7 +43,7 @@ While all of these applications are different, they have some things in common:
 
 *  In order to read and write messages, the clients and servers **need a way to read and write sequences of bytes**. *Very often*, they need to be able to do that in a **reliable way** (with guarantees that all the bytes written on one side will be received on the other, in the right order). This reliability is ensured by TCP.
 
-*  The client and the server **ignore the implementation details** of the interlocutor on the other side. In particular, the client often does not know on which operating system the server runs. For many protocols, it does not know either in which programming language it as been written. 
+*  The client and the server **ignore the implementation details** of the interlocutor on the other side. In particular, the client often does not know on which operating system the server runs. For many protocols, it does not know either in which programming language it as been written.
 
 When we talk about **client-server programming**, we talk about **using a programming language** to implement some sort of **communication protocol**, whether it is a standard one (e.g. HTTP) or our own proprietary one. **Modern programming languages and libraries make this surprisingly easy**. Simple clients and servers can literally be written in a couple of lines. Learning how to write these lines is very easy if you have some experience working with IOs (which you should, having survived the previous lecture!)
 
@@ -124,29 +124,29 @@ The details of the syntax depend on the programming language used to implement t
 
 The following code snippets show how the previous pseudo code can be implemented in Java.
 
-```
+```java
 // Server (exception handling removed for the sake of brevity)
 
 boolean serverShutdownRequested = false;
-ServerSocket receptionistSocket = new ServerSocket(80); 
+ServerSocket receptionistSocket = new ServerSocket(80);
 
 while (!serverShutdownRequested) {
   Socket clientSocket = receptionistSocket.accept(); // blocking call
   InputStream is = clientSocket.getInputStream();
   OutputStream os = clientSocket.getOutputStream();
-  
+
   int b = is.read(); // read a byte sent by the client
   os.write(b);       // send a byte to the client
-  
+
   clientSocket.close();
-  is.close(); 
+  is.close();
   os.close();
 }
 
 receptionistSocket.close();
 ```
 
-```
+```java
 // Client (again, exception handling has been removed)
 
 Socket socket = new Socket("www.heig-vd.ch", 80);
@@ -159,7 +159,7 @@ os.write(b);       // send a byte to the server
 b = is.read();     // read a byte sent by the server
 
 clientSocket.close();
-is.close(); 
+is.close();
 os.close();
 ```
 
@@ -170,7 +170,7 @@ In the code above, every byte that is written by the client on its `os` output s
 
 [![](images/02/cronut.jpg)](http://www.flickr.com/photos/roboppy/10545877374/)
 
-For most TCP servers, we want to be able to **talk to more than one client at the same time**. Furthermore, we want to do it in a *scalable* way, with the ability to talk to gazillions of clients at the same time (because we are living in 2014 and we are [web scale](http://www.youtube.com/watch?v=b2F-DItXtZs)). There are different ways to achieve this goal, by using **one or more processes** and **one or more threads**. 
+For most TCP servers, we want to be able to **talk to more than one client at the same time**. Furthermore, we want to do it in a *scalable* way, with the ability to talk to gazillions of clients at the same time (because we are living in 2014 and we are [web scale](http://www.youtube.com/watch?v=b2F-DItXtZs)). There are different ways to achieve this goal, by using **one or more processes** and **one or more threads**.
 
 Let us compare 5 alternatives:
 
@@ -184,25 +184,25 @@ Let us compare 5 alternatives:
 
 This is **the simplest type of server that you can write**, but it as a limitation that makes it almost unviable. Indeed, this type of server is able to **talk to only one client at the time**. For some stateless protocols (where the client and the server communicate during a very short period) and when the traffic is very low, it might be an option, but frankly… Consider the following Java code:
 
-```
+```java
 try {
 	serverSocket = new ServerSocket(PORT);
 } catch (IOException ex) {
 	Logger.getLogger(SingleThreadedServer.class.getName()).log(Level.SEVERE, null, ex);
 	return;
 }
-		
+
 while (true) {
 	try {
-		
+
 		LOG.info("Waiting (blocking) for a new client…");
 		clientSocket = serverSocket.accept();
-		
+
 		in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 		out = new PrintWriter(clientSocket.getOutputStream());
 		String line;
 		boolean shouldRun = true;
-		
+
 		LOG.info("Reading until client sends BYE or closes the connection...");				
 		while ( (shouldRun) && (line = in.readLine()) != null ) {
 			if (line.equalsIgnoreCase("bye")) {
@@ -211,21 +211,21 @@ while (true) {
 			out.println("> " + line.toUpperCase());
 			out.flush();
 		}
-		
+
 		LOG.info("Cleaning up resources...");				
 		clientSocket.close();
 		in.close();
 		out.close();
-		
+
 	} catch (IOException ex) {
 	…
 	}
 }
 
 ```
-The following line, which is used to set the socket in listening mode and to accept connection requests from clients, is very important: 
+The following line, which is used to set the socket in listening mode and to accept connection requests from clients, is very important:
 
-```
+```java
         clientSocket = serverSocket.accept();
 ```
 **You have to understand that `accept()` is a *blocking* call**. **This means that the execution of the current thread will suspend until a client arrives**. Nothing else will happen. So here is what happens when you execute the server. It will bind a socket to a port, wait for a client to arrive, serve that client (which might take a while, depending on the application protocol…) and *only then* be ready to serv the next client. In other words, clients are served in pure sequence. *That sounds a bit like a Cronut queue…*
@@ -240,7 +240,7 @@ The model works as follows: the server starts in a first process, which binds a 
 
 The following code snippet, which is part of the great [Beej's Guide to Network Programming](http://www.beej.us/guide/bgnet/output/html/multipage/index.html), shows how this can be implemented in C (the complete code is available [here](http://www.beej.us/guide/bgnet/output/html/multipage/clientserver.html#simpleserver)):
 
-```
+```c
 printf("server: waiting for connections...\n");
 
 while(1) {  // main accept() loop
@@ -284,7 +284,7 @@ The following Java code illustrates the idea. Here are the key points about the 
 * The responsibility of the `ServantWorker` class is to take care of a particular client. It provides a `run()` method that executes on its own thread. This method has access to the input and output streams connected to the socket and can use them to receive bytes from, respectively send bytes to the client.
 
 
-```
+```java
 public class MultiThreadedServer {
 
 	final static Logger LOG = Logger.getLogger(MultiThreadedServer.class.getName());
@@ -386,9 +386,9 @@ If you want to compare the behavior of single-threaded and multi-threaded server
 
 #### <a name="SingleProcessSingleThreadedNonBlockingMultiplexing"></a>5.4. Single Process, Single-Threaded, Non-Blocking Servers (multiplexing)
 
-Even if we are implementing a server with a single process and a single thread, there are ways to handle multiple clients concurrently. What this means is that there are ways to **monitor more than one socket at the time** and to react to incoming data on them. The first one is to set the sockets in a particular state (non-blocking). to use specific system calls. The way to implement this model depends on the operating system (i.e. it depends on the system calls supported by the operating system). While solutions have existed for a long time, they have evolved over the years. 
+Even if we are implementing a server with a single process and a single thread, there are ways to handle multiple clients concurrently. What this means is that there are ways to **monitor more than one socket at the time** and to react to incoming data on them. The first one is to set the sockets in a particular state (non-blocking). to use specific system calls. The way to implement this model depends on the operating system (i.e. it depends on the system calls supported by the operating system). While solutions have existed for a long time, they have evolved over the years.
 
-To understand how multiplexing works, **let us take the analogy of a restaurant**. Waiters are taking care of customers, sitting at their tables: 
+To understand how multiplexing works, **let us take the analogy of a restaurant**. Waiters are taking care of customers, sitting at their tables:
 
 * **Without multiplexing**, we could think of two approaches for serving a room full of customers. The **first approach** would be to have a single waiter (single process, single thread) in the restaurant. We would ask him to take care of each table, in sequence. In other words, the waiter would start to serve a new table only when the previous one has be fully served (greetings, drinks, food, desert, bill, greetings). That does not seem very realistic, does it? The **second approach** would be to hire more waiters (one waiter per table). The job of a waiter would still be the same, in other words to take care of a single table at the time. This approach (multiple processes and/or threads) is better, but it proves to be quite expensive for the restaurant who has extra salaries to pay.
 
@@ -409,10 +409,10 @@ Before we get to the technical details, let us consider a real world analogy aga
 
 In technical terms, doing asynchronous IO programming consists of using non-blocking IOs (hence of setting sockets in non-blocking state) in combination with an event-based approach. This is possible in various programming environments and has become very popular. It is one of the features of the *Node.js platform*, which applies the asynchronous pattern across the board. It is also one aspect of the [*reactive programming*](http://www.reactivemanifesto.org/#event-driven) approach. To illustrate what that means, consider the following code:
 
-```
+```javascript
 // This is an example for a simple echo server implemented in Node.js. It
 // demonstrates how to write single-threaded, asynchronous code that allows
-// one server to talk to several clients concurrently. 
+// one server to talk to several clients concurrently.
 //
 // readline is a module that gives us the ability to consume a stream line
 // by line
@@ -444,7 +444,7 @@ function callbackFunctionToCallWhenSocketIsBound() {
 // We receive the socket as a parameter. We have to attach a callback function to the
 // 'data' event that can be raised on the socket.
 function callbackFunctionToCallWhenNewClientHasArrived(socket) {
-	
+
 	// We wrap a readline interface around the socket IO streams; every byte arriving
 	// on the socket will be forwarded to the readline interface, which will take care
 	// of buffering the data and will look for end-of-line separators. We will not register
@@ -454,9 +454,9 @@ function callbackFunctionToCallWhenNewClientHasArrived(socket) {
 	  input: socket,
 	  output: socket
 	});
-	
+
 	rl.on('line', callbackFunctionToCallWhenNewDataIsAvailable);
-	
+
 	// This callback method is invoked when new data is available on the socket
 	// We can process it, which in our case simply means dumping it to the console
 	function callbackFunctionToCallWhenNewDataIsAvailable(data) {
@@ -478,7 +478,7 @@ This code implements a TCP server capable of servicing multiple clients at the s
 
 The code is available in the [TcpServerNode example](../examples/08-TcpServerNode), which you can run with the following command:
 
-```
+```bash
 node server.js
 ```
 
@@ -491,18 +491,18 @@ node server.js
 
 ### <a name="ResourcesAdditional"></a>Additional resources
 
-* A [section](http://www.tcpipguide.com/free/t_TCPIPTransportLayerProtocolsTransmissionControlPro.htm) of the TCP/IP Guide dedicated to TCP, if you need a refresh on that topic. 
+* A [section](http://www.tcpipguide.com/free/t_TCPIPTransportLayerProtocolsTransmissionControlPro.htm) of the TCP/IP Guide dedicated to TCP, if you need a refresh on that topic.
 
-* [Beej's Guide To Network Programming](http://www.beej.us/guide/bgnet/output/html/multipage/index.html), which a great resource if you want to use the Socket API in C. 
+* [Beej's Guide To Network Programming](http://www.beej.us/guide/bgnet/output/html/multipage/index.html), which a great resource if you want to use the Socket API in C.
 
-* A [nice course](http://www.cs.dartmouth.edu/~campbell/cs50/socketprogramming.html) about network programming with the Socket API in C. 
+* A [nice course](http://www.cs.dartmouth.edu/~campbell/cs50/socketprogramming.html) about network programming with the Socket API in C.
 
 * An example for a [simple TCP server](http://www.gnu.org/software/libc/manual/html_node/Server-Example.html) that uses non-blocking IOs and multiplexing with the `select()` system call.
 
 * A [presentation](http://fr.slideshare.net/gncvalente/whats-so-special-about-nodejs
 ), with embedded videos, which introduces Nodes.js, talks about asynchronous IOs and about the C libraries used by Nodes.js. The presentation also has two interesting slides that compare apache (using threads) and nginx (using an event loop). Another [presentation](http://fr.slideshare.net/marcusf/nonblocking-io-event-loops-and-nodejs) on the same topic.
 
-* An [article](http://www.onjava.com/pub/a/onjava/2002/09/04/nio.html) that explains how Java NIO adds non-blocking IO to Java IO. Another [article](http://www.ibm.com/developerworks/java/library/j-nio2-1/index.html?ca=dat) that explains how Java NIO.2 adds support for asynchronous IO to Java NIO. 
+* An [article](http://www.onjava.com/pub/a/onjava/2002/09/04/nio.html) that explains how Java NIO adds non-blocking IO to Java IO. Another [article](http://www.ibm.com/developerworks/java/library/j-nio2-1/index.html?ca=dat) that explains how Java NIO.2 adds support for asynchronous IO to Java NIO.
 
 * The [home page](http://libevent.org/) for the lib event C library, which provides a unified interface for non-blocking IO programming, isolating the developer from operating system specific function calls. This [section](http://www.wangafu.net/~nickm/libevent-book/01_intro.html) of the documentation gives a good introduction to asynchronous IO.
 
@@ -525,4 +525,3 @@ Here is a **non-exhausive list of questions** that you can expect in the written
 * **Write the Java code an "echo" client**, which connects to this server, sends the following bytes `'ThIS is a TeSt'`, reads the response and validates that the response is what was expected.
 
 * **Write the Java code to make the single threaded "echo" server multi-threaded**. Be able to explain how the solution uses the `Runnable` interface and the `Thread` class.
-
