@@ -5,10 +5,10 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 ## Upcoming deadlines
 
-* <u>**Thursday**</u>, April 2nd: everybody must have **studied the material about TCP programming in Java** (and prepared questions for things that are not clear, so that we can review them during the live session). Everybody must have **executed and studied the code of the example projects**. In particular, the structure of the multi-threaded server must be well understood.
-- <u>**Thursday**</u>, April 2nd: **ideally**, some people will have started the exercise of specifying the "calculator protocol", possibly even the implementation in Java. If this is the case, the students could present their solution so that we can discuss it together (and so that other people can learn from them).
-- ~~**Thursday**, April 9th: date of the **first test**, covering Java IOs, TCP programming and Docker introduction.~~
-- **REVISED SCHEDULED !!!! Thursday**, April 23rd: date of the **first test**, covering Java IOs, TCP programming and Docker introduction.
+* ~~Monday, June 1st: deadline to submit the **HTTP infrastructure** lab~~
+* ~~Thursday, May 28th: deadline to submit the **HTTP infrastructure** lab~~
+* Thursday, June 18th: **second written test**
+* Sunday, June 28th: deadline to submit the **Orchestra lab** (UDP)
 
 
 ## General links
@@ -82,54 +82,47 @@ This is where you will find lecture notes, slides and some of the examples prese
 
 * **THE FIRST WRITTEN TEST IS RESCHEDULED HERE.**
 * **We start to present the HTTP protocol**, so that you can get started with the HTTP infrastructure (long) lab. We are preparing videos to present this material.
-* In this lab, we will use Docker to create a complete web infrastructure with a reverse proxy and several HTTP servers.
-* **We start working on the HTTP infrastructure lab**. We already have a series of 12 webcasts (~6 hours) that guide you through the process, so we are in good shape.
-* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+* This week, the goal is to get familiar with the basics of the HTTP protocol. After watching a series of videos and studying the lecture notes, you should be able to describe the syntax of HTTP messages (requests and responses). You should also be able to describe what are the most important status codes that HTTP servers send back to the client.
+* In the videos, we show demonstrations of various tools (including servers running in Docker containers). You have to redo these experiments on your machine (but you don't have any report or deliverable to submit - it is prep work for the upcoming lab and tests).
+* For the videos, watch these 4 videos in the "Le Protocole HTTP" [playlist](https://www.youtube.com/playlist?list=PLfKkysTy70QZG5eUH6nyLrUZLn8Hnlf86):
+  * introduction
+  * outils
+  * observation
+  * codes de status
+* For the lecture notes, study this chapter:
+  
+  * [Lecture 4 - HTTP](lectures/04-Lecture4-HTTP.md)
+* For the slides, look at:
+  
+* [Lecture 4 - HTTP](slides/04-HTTPProtocol.pdf)
+  
+* ## Week 10
 
-## Week 10
+  * We continue with our presentation of HTTP in videos for the theoretical part.
+  * **We start working on the HTTP infrastructure lab**. We already have a series of 12 webcasts (~6 hours) that guide you through the process, so we are in good shape.
+  * In this lab, we will use Docker to create a complete web infrastructure with a reverse proxy and several HTTP servers.
+  * All the instructions for the HTTP infrastructure lab are available in [this repo](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020-Labo-HTTPInfra), with links to the YouTube webcasts.
 
-* We continue with our presentation of HTTP in videos for the theoretical part.
-* We continue with the HTTP infrastructure lab.
-* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+  ## Week 11
 
-## Week 11
+  * We continue with the HTTP infrastructure lab.
+  * **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
 
-* We complete the HTTP infrastructure lab.
-* We complete the HTTP infrastructure lab.
-* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+  ## Week 12
 
-## Week 12: Written test (May 14th)
+  * We continue with the HTTP infrastructure lab.
+  * ~~We maintain the date for the evaluation, which will focus on HTTP.**~~ 
+  * ~~Both on the protocol aspects (presented in the new videos) and on the infrastructure aspects (presented in new videos and put in practice in the lab)~~
 
-* **We maintain the date for the evaluation, which will focus on HTTP.** 
-* Both on the protocol aspects (presented in the new videos) and on the infrastructure aspects (presented in new videos and put in practice in the lab)
+  ## Week 13: ~~(Ascencion, courtesy of COVID-19)~~
 
-## Week 13: ~~(Ascencion, courtesy of COVID-19)~~
+  * We continue the HTTP infrastructure lab.
 
-* We introduce UDP programming, with videos.
-* We start with the "Orchestra" lab.
-* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
+  ## Week 14
 
-## Week 14:
-
-* We continue with UDP programming, with videos.
-* We complete the "Orchestra" lab.
-* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
-
-## Week 15:
-
-* We introduce the SMTP protocol.
-* We start the SMTP lab (we already have webcasts that walk you through the procedures)
-* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
-
-## Week 16:
-
-* We complete the theoretical part of the SMTP protocol.
-* We complete the SMTP lab
-* **The teaching team will reach out to you during the normal RES lecture and lab sessions to see how you are progressing and help you.**
-
-
-
-## [at this point, calendar is still subject to change...]
+  * We **complete** the HTTP infrastructure lab.
+  
+  
 
 
 
@@ -138,3 +131,10 @@ This is where you will find lecture notes, slides and some of the examples prese
 ~~<u>**Sunday**</u>, March 8th: everybody must have (individually):~~
 
 - ~~completed the [Java IO lab](https://github.com/SoftEng-HEIGVD/Teaching-HEIGVD-RES-2020-Labo-Java-IO)~~
+
+* <u>**Thursday**</u>, April 2nd: everybody must have **studied the material about TCP programming in Java** (and prepared questions for things that are not clear, so that we can review them during the live session). Everybody must have **executed and studied the code of the example projects**. In particular, the structure of the multi-threaded server must be well understood.
+
+- <u>**Thursday**</u>, April 2nd: **ideally**, some people will have started the exercise of specifying the "calculator protocol", possibly even the implementation in Java. If this is the case, the students could present their solution so that we can discuss it together (and so that other people can learn from them).
+- ~~**Thursday**, April 9th: date of the **first test**, covering Java IOs, TCP programming and Docker introduction.~~
+- **REVISED SCHEDULED !!!! Thursday**, April 23rd: date of the **first test**, covering Java IOs, TCP programming and Docker introduction.
+
