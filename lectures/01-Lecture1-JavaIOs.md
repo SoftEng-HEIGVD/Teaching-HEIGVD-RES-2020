@@ -22,7 +22,7 @@
 
 ## <a name="Objectives"></a>Objectives
 
-The goal of this lecture is to give an **overview of IO programming in Java** and to see how classes in the `java.io` package can be used to read and write files. 
+The goal of this lecture is to give an **overview of IO programming in Java** and to see how classes in the `java.io` package can be used to read and write files.
 
 Why does it matter and why do we study that in this course?
 
@@ -32,9 +32,9 @@ Why does it matter and why do we study that in this course?
 
 More specifically, here are the objectives of the lecture:
 
-* Understand the concepts of **data sources**, **sinks** and **streams** and how they provide a foundation for standard IO classes. 
+* Understand the concepts of **data sources**, **sinks** and **streams** and how they provide a foundation for standard IO classes.
 
-* Understand that these concepts are applied in the same way, whether you are reading data from files, from the network or from other processes running on your machine (what we later refer to as the **universal API**). 
+* Understand that these concepts are applied in the same way, whether you are reading data from files, from the network or from other processes running on your machine (what we later refer to as the **universal API**).
 
 * Understand the difference between **processing binary data** (bytes) and **processing text data** (characters). You should be able to decide when to use an `InputStream` or a `Reader`, and explain why. Be able to explain how **character encodings** work and how to deal with them in Java.
 
@@ -62,20 +62,20 @@ In any programming language, dealing with IOs means **dealing with an exchange o
 * you want to read data from this **memory** zone
 * you have code executing on two **threads**; you want the code executing on the first thread to produce messages that are consumed by the code executing on the second thread.
 
-Instead of having a different API, in other words different abstractions, classes and methods, for each of these situations, you can use the Java IO as a generic, universal API to solve all your data transfer needs. 
+Instead of having a different API, in other words different abstractions, classes and methods, for each of these situations, you can use the Java IO as a generic, universal API to solve all your data transfer needs.
 
 > At the end of the day, whether you are "talking" to a file, to a network endpoint or to a process does not matter. You are always doing the same thing: reading and/or writing bytes or characters. The Java IO API is the toolbox that you need for that purpose.
 
 
 ### <a name="SourcesSinksAndStreams"></a>2. Sources, Sinks and Streams
 
-If you think about it, every situation where you need to deal with IOs can be described with 3 abstractions: 
+If you think about it, every situation where you need to deal with IOs can be described with 3 abstractions:
 
 * The first one is the concept of **source**, which is "something" that generates a sequence of bytes or characters. Again, it can be a file on the local file sytem, a client connected over the network or a process running on the local machine.
 
 * The second one is the concept of **sink**, which "something" that can consume a sequence of bytes or characters. As before, it can be a file, a network endpoint or a process.
 
-* The third one is the concept of **stream**, which you can think of as **a pipe that connects your program to either a source or a sink**. In the first case, it will be an input stream (that you can **read from**), in the second case, it will be an output stream (that you can **write to**). Note that the sources and the sinks are not connected directly. 
+* The third one is the concept of **stream**, which you can think of as **a pipe that connects your program to either a source or a sink**. In the first case, it will be an input stream (that you can **read from**), in the second case, it will be an output stream (that you can **write to**). Note that the sources and the sinks are not connected directly.
 
 > The beauty of the Java IO API, and what makes it universal, is that once you have a stream, you always use it in the same way. Whether it is connected to a file source, a network source or a memoy source, you are using the same class and have access to the same methods. Similarly, if your stream is connected to a file sink, to a network sink or to a memory sink, you always write bytes to the stream in the same way.
 
@@ -89,9 +89,9 @@ Concretely, when your program wants to read data from a source, it will:
 
 2.  **Open an input stream**, that will connect your program to the source. Typically, you will do that by either creating a new instance of a class like `FileInputStream` or by getting an existing instance by calling a method like `socket.getInputStream()`.
 
-3. **Use the various `read()` methods from the `InputStream` class**, typically until the end of the stream is reached. The end of the stream is reached when the source has no more data to send (e.g. the entire file has been read) or when connection with the source has been lost (e.g. the network client has disconnected). 
+3. **Use the various `read()` methods from the `InputStream` class**, typically until the end of the stream is reached. The end of the stream is reached when the source has no more data to send (e.g. the entire file has been read) or when connection with the source has been lost (e.g. the network client has disconnected).
 
-4. **Close the stream**, by using the `close()` method defined in the `InputStream` class. 
+4. **Close the stream**, by using the `close()` method defined in the `InputStream` class.
 
 #### 2.2. Writing Data To a Sink
 
@@ -103,16 +103,16 @@ Similarly, when your program wants to write data from a source, it will:
 
 2.  **Open an output stream**, that will connect your program to the sink. Typically, you will do that by either creating a new instance of a class like `FileOutputStream` or by getting an existing instance by calling a method like `socket.getOutputStream()`.
 
-3. **Use the various `write()` methods from the `OutputStream` class**, until you don't have any more data to send. 
+3. **Use the various `write()` methods from the `OutputStream` class**, until you don't have any more data to send.
 
-4. **Close the stream**, by using the `close()` method defined in the `OutputStream` class. 
+4. **Close the stream**, by using the `close()` method defined in the `OutputStream` class.
 
 
 #### 2.3. Design Your Code to Be Universal
 
 When you design your own classes and methods, make sure that you keep the spirit of the Universal API. As a rule of thumb, **pass streams and not sources as method parameters**. Compare the following two methods:
 
-```
+```java
 /**
  * This interface will work only for data sources on the file system. In the
  * method implementation, I would need to create a FileInputStream from f and
@@ -123,7 +123,7 @@ When you design your own classes and methods, make sure that you keep the spirit
 }
 ```
 
-```
+```java
 /**
  * This interface is much better. The client using the service has a bit more
  * responsibility (and work). It is up to the client to select a data source
@@ -154,7 +154,7 @@ Let us look at some elements of the code:
 
 
 
-```
+```java
 package ch.heigvd.res.samples.io;
 
 import java.io.File;
@@ -167,31 +167,31 @@ import java.io.IOException;
  * @author Olivier Liechti
  */
 public class FileDuplicator {
-		
+
 	public void duplicate(String inputFileName, String outputFileName) throws IOException {
 
 	    // This is my data source
 		File inputFile = new File(inputFileName);
-		
+
 		// This is my data sink
 		File outputFile = new File(outputFileName);
-		
+
 		// These are 2 streams, 1 for reading and 1 for writing bytes
 		FileInputStream fis = new FileInputStream(inputFile);
 		FileOutputStream fos = new FileOutputStream(outputFile);
-		
+
 		int b;
 		// I read all bytes from the input stream in a loop
 		while ( (b = fis.read()) != -1 ) {
 		    // I write each of the read bytes to the output stream
 			fos.write(b);
 		}
-		
+
 		// Important: when dealing with IOs, always close and clean-up resources
 		fis.close();
 		fos.close();
 	}
-	
+
 }
 ```
 
@@ -223,9 +223,9 @@ Binary value     Decimal value     Character
 
 **ASCII** worked well for many years, but there are many **languages with alphabets much larger than the latin alphabet**. For these languages, having only 7 bits (128 values) to represent characters is simply not enough. This is why several other character encoding systems have been developed over time. This has introduced quite a bit of complexity, especially when conversion from one encoding system to another is required.
 
-In order to deal with internationalization, Java decided to use the **Unicode** standard to handle characters. When a Java program manipulates a character in memory, it uses **two bytes**. These two bytes are used to store what Unicode calls a **code point** (1'114'112 code points are defined in the range 0 to 10FFFF). A code point is a numeric value, which is often represented as `U+xxxxxx`, where `xxxxxx` is an hexadecimal value. What is useful (but also a bit confusing), is that the code points used to identify ASCII characters are the values defined in the ASCII encoding system. Huh? Take the character 'B' for instance. In ASCII, it is encoded with the decimal value 66. In Unicode, it has been decided that the code point `U+0042` (yes, 42 is the hexademical value of 66) would be used to identify the character 'B'.	
+In order to deal with internationalization, Java decided to use the **Unicode** standard to handle characters. When a Java program manipulates a character in memory, it uses **two bytes**. These two bytes are used to store what Unicode calls a **code point** (1'114'112 code points are defined in the range 0 to 10FFFF). A code point is a numeric value, which is often represented as `U+xxxxxx`, where `xxxxxx` is an hexadecimal value. What is useful (but also a bit confusing), is that the code points used to identify ASCII characters are the values defined in the ASCII encoding system. Huh? Take the character 'B' for instance. In ASCII, it is encoded with the decimal value 66. In Unicode, it has been decided that the code point `U+0042` (yes, 42 is the hexademical value of 66) would be used to identify the character 'B'.
 
-Unicode is actually not a character encoding system. When you have a code point, you still need to decide how you are going to encode it as a series of bits. Sure, you could use 16 bits (4 bits for each of the 4 hexadecimal values making up the code point) for each encoded character. But in general, that would be a waste. Think of a text written in english, with only latin characters. Since the code points of all characters are below 255, 
+Unicode is actually not a character encoding system. When you have a code point, you still need to decide how you are going to encode it as a series of bits. Sure, you could use 16 bits (4 bits for each of the 4 hexadecimal values making up the code point) for each encoded character. But in general, that would be a waste. Think of a text written in english, with only latin characters. Since the code points of all characters are below 255,
 
 Sounds complicated? Well, it is a bit. Have a look at this [page](http://www.fileformat.info/info/unicode/char/42/index.htm). It will show you how the same character is represented in Unicode and in different encoding systems.
 
@@ -259,7 +259,7 @@ In the Java IO, 4 classes use this filtering mechanism:
 
 Why should you use these classes and what are they doing? Think about what is happening if you write a method that **consumes a binary stream connected to a file, byte by byte**. When you call the `read()` method, you are not really sure what is happening at a low level (because that is up to the JRE implementation, to the operating system, to the disk driver, etc.). To exagerate the situation, imagine that every single call the method would actually traverse all the layers and result in a hard disk operation. You realize that it is a lot of work, just to read a character. You also realize that you will be wasting a lot of time, because **you will have to pay the overhead for every read operation**.
 
-To improve the situation, a common technique is to use **buffering** (and this can be done at each layer). Simply stated, when you use buffering when reading data, you apply the following principle: 
+To improve the situation, a common technique is to use **buffering** (and this can be done at each layer). Simply stated, when you use buffering when reading data, you apply the following principle:
 
 >"If I am asked to read 1 character, then I will read 10. I will return the first one and keep the 9 remaining for later. If I am asked once more to read 1 character, then I will already have it and be able to respond quickly, without any effort."
 
@@ -273,20 +273,20 @@ To improve the situation, a common technique is to use **buffering** (and this c
 
 That is pretty much what the `BufferedXXX` classes are doing. They manage an internal buffer for you (you don't really see or interact with this buffer), which means that even if you write a loop that reads data byte by byte, then each byte is read from the buffer and not from the original source. In order to use a BufferedInputStream, you wrap one around an existing source:
 
-```
+```java
 public void processInputStream(InputStream is) {
 
   // I don't know to which source "is" is connected. It is also possible that is is already
   // a chain of several filters wrapping each other. I don't really care, what I want is to
   // make sure that I read bytes in an efficient way.
-  
+
   // So, here I decorate "is" by wrapping a BufferedInputStream around it
   BufferedInputStream bis = new BufferedInputStream(is);
-  
+
   // When I make this call, then "bis" will read a bunch of bytes, send me one and keep the
   // others in his buffer
   int b = bis.read();
-  
+
   // When I make this call, I will get my byte faster because it will come straight from the
   // buffer managed by "bis"
   b = bis.read();

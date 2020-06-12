@@ -17,9 +17,9 @@
 
 ## <a name="Objectives"></a>Objectives
 
-The goal of this lecture is to **continue our study of network programming** and to explain how developers can write **client and server programs** that use the **UDP protocol** to communicate with each other. 
+The goal of this lecture is to **continue our study of network programming** and to explain how developers can write **client and server programs** that use the **UDP protocol** to communicate with each other.
 
-After this lecture, you should be able to **write Java programs that send and receive UDP datagrams**. You should also be able to describe the notions of **unicast**, **broadcast** and **multicast** message distribution modes. Furthermore, you should be able to explain how **service discovery protocols** can be implemented thanks to multicast messaging. 
+After this lecture, you should be able to **write Java programs that send and receive UDP datagrams**. You should also be able to describe the notions of **unicast**, **broadcast** and **multicast** message distribution modes. Furthermore, you should be able to explain how **service discovery protocols** can be implemented thanks to multicast messaging.
 
 Last but not least, you should be **aware of what it means to use an unreliable transport protocol** as a basis for your application-level protocol. You should be able to describe what clients and servers have to do in order to deal with this unreliability.
 
@@ -29,7 +29,7 @@ Last but not least, you should be **aware of what it means to use an unreliable 
 
 In the previous lecture, we have looked at the TCP protocol and seen as it offers **one way to transport application-level messages** across the network (in a reliable fashion). We have seen how the telephone system is a good analogy for how TCP works. In this lecture, we will look at **another transport protocol**, namely **UDP**. Here, it is the **postal system** that provides a useful analogy.
 
-When you write and send letters, **you do not need to establish a synchronous connection** with your peers. You drop your letters in a mailbox, they are taken care of by the system and at some point they *should* be delivered at destination. 
+When you write and send letters, **you do not need to establish a synchronous connection** with your peers. You drop your letters in a mailbox, they are taken care of by the system and at some point they *should* be delivered at destination.
 
 [![](images/03/returnaddress.jpg)](http://www.flickr.com/photos/orlando-herb/4835564098/)
 
@@ -42,16 +42,16 @@ What does that mean concretely? What does the application developer need to do w
 
 * Firstly, **there are application-level protocols where this is not really an issue** (in other words, there are application protocols that are **tolerant to data loss**). Think of a video streaming application protocol: it does not matter if some of the data is lost. The worse that can happen is a lower quality. Think of a protocol used by sensors to report measurements to a data collection infrastructure (see this [example](../../2014/examples/09-Thermometers)). Again, loosing some measurements may be totally acceptable.
 
-* For applications where data loss cannot be accepted, the client needs a way to **know if a datagram that it has sent has been received by the server**. If it thinks that the datagram has been lost, then it should try again and **resend the datagram**. That should remind you of the way TCP works: a combination of **acknowledgments** and **timers** are certainly one way to address this issue. 
+* For applications where data loss cannot be accepted, the client needs a way to **know if a datagram that it has sent has been received by the server**. If it thinks that the datagram has been lost, then it should try again and **resend the datagram**. That should remind you of the way TCP works: a combination of **acknowledgments** and **timers** are certainly one way to address this issue.
 
 * However, you should also remember that sometimes, the client will *think* that one of its datagrams has been lost, although it as actually been received and processed by the server. This would be the case if **it is the server's acknowledgment that has been lost or has arrived too late**. The consequence is that the server will then probably **receive multiple copies of the same datagram**. It needs to be aware of that possibility and act appropriately.
 
 * For illustration purposes, **think of a rudimentary application-level protocol**, where clients can send commands to increase the value of a counter (there is a single counter managed by the server). Clients send  `INC-COUNTER` commands encapsulated in UDP datagrams. As you can guess, when the server receives an `INC-COUNTER` command, it increments the value of the counter by one. Let us consider the following scenarios:
 
   *  Let's imagine that the client sends 10 commands. If no datagram is lost, then at the end of the process, **the counter will have a value of 10**. Fine, but we *[know](http://en.wikipedia.org/wiki/Fallacies_of_Distributed_Computing)* that we are not living in an ideal world and that we *have to assume* that something bad will happen at some point.
-  
+
   * **If some datagrams are lost** and not resent by the client, then **the counter will have a value smaller than 10**. As we have seen, the client and the server have to agree on an acknowledgment protocol. If the client does not receive an ack for a command *within a specified period*, it should resend the command.
-  
+
   * **If the same command is sent multiple times** (because the client wrongly thinks that it has been lost) **and is processed multiple times** by the server, then **the counter will have a value greater than 10**. To avoid this problem, the server has to keep track of the commands that it has already processed and acknowledged. To be precise, it has to keep track of [non-idempotent](http://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning) commands. That is where *stop-and-go* and *sliding window* algorithms are providing you with a proven solution. Have a look at the Trivial File Transfer Protocol ([TFTP](http://tools.ietf.org/html/rfc1350)) specification for an example of a reliable application-level protocol built on top of UDP. Also have a look at a [flaw](http://en.wikipedia.org/wiki/Sorcerer%27s_Apprentice_Syndrome) in the first design of this protocol.
 
 
@@ -59,7 +59,7 @@ What does that mean concretely? What does the application developer need to do w
 
 The **Socket API** provides functions for using UDP in application-level code. When using the C API, the first thing to be aware of is that it is when creating the socket that one specifies whether we want to use TCP or UDP. Compare the following two instructions:
 
-```
+```c
 // If we want to use TCP
 int sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -67,13 +67,13 @@ int sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 int sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);    
 ```
 
-Once we have a socket, we can use it both to **receive** and to **send** datagrams. In C, the developer does not use a special data structure that would represent a datagram. He uses the `sendto()` and `rcvfrom()` functions and passes byte arrays as parameters. Unlike with TCP, no connection has been established before making the calls to send and receive data. For that reason, when calling the `sendto()` function, the developer **needs to specify a destination address and a destination port**. Similarly, when using the `rcvfrom()` function, the developer has to pass a data structure, where he will **find the source address and port** after the call. 
+Once we have a socket, we can use it both to **receive** and to **send** datagrams. In C, the developer does not use a special data structure that would represent a datagram. He uses the `sendto()` and `rcvfrom()` functions and passes byte arrays as parameters. Unlike with TCP, no connection has been established before making the calls to send and receive data. For that reason, when calling the `sendto()` function, the developer **needs to specify a destination address and a destination port**. Similarly, when using the `rcvfrom()` function, the developer has to pass a data structure, where he will **find the source address and port** after the call.
 
-```
+```c
 // Let's send a datagram. The payload is the content of buffer and the destination
 // address is specified in sa
 bytes_sent = sendto(sock, buffer, strlen(buffer), 0,(struct sockaddr*)&sa, sizeof sa);
-  
+
 // Let's wait for a datagram to arrive. We will find the payload in the buffer and
 // the return address in sa
 recsize = recvfrom(sock, (void *)buffer, sizeof(buffer), 0, (struct sockaddr *)&sa, &fromlen);
@@ -89,26 +89,26 @@ Different messaging patterns can be implemented with UDP:
 
 * A common and simple pattern is the **fire-and-forget notification** pattern. The client prepares a datagram and sends it to one or more recipients. If data loss can be tolerated, nothing else needs to be done. In the [thermoter example](../../2014/examples/09-Thermometers), we use this pattern. Smart thermometers publish measurements on the network on a regular basis. No response is expected and if some measurements are lost, it is not an issue.
 
-* Another common pattern is the **request-reply** pattern. The client prepares a datagram, in which it encapsulates an application-level message (in other words, the application level message is the payload of the UDP datagram). The client then **creates a datagram socket**, which will be **used both for sending the request and for receiving the response**. Note that it is possible, but **not required**, to specify a port. If no port is specified, then the operating system will automatically assign a free port to the socket. Now, remember what we said about the **return address** on physical letters. Every datagram (together with the encapsulating IP packet) sent via the socket will contain 4 values. Firstly, the **destination address and port** (**explicitly** set by the developer). Secondly, the **source address and port** (**automatically** set by operating system, retrieved from the socket). 
+* Another common pattern is the **request-reply** pattern. The client prepares a datagram, in which it encapsulates an application-level message (in other words, the application level message is the payload of the UDP datagram). The client then **creates a datagram socket**, which will be **used both for sending the request and for receiving the response**. Note that it is possible, but **not required**, to specify a port. If no port is specified, then the operating system will automatically assign a free port to the socket. Now, remember what we said about the **return address** on physical letters. Every datagram (together with the encapsulating IP packet) sent via the socket will contain 4 values. Firstly, the **destination address and port** (**explicitly** set by the developer). Secondly, the **source address and port** (**automatically** set by operating system, retrieved from the socket).
 
   After sending the datagram, the client will **wait for datagrams to come back** on the socket. When the **server** receives the datagram with the request (it has previously **created a socket on a known port** and is using it to accept datagrams), it extracts the application-level request, processes it, generates and application-level response and prepares a reply datagram. **It extracts the source IP and port from the request datagram, and uses these values as destination parameters for its reply**. Finally, it sends the datagram via its socket.
 
   In some cases, **one more question** needs to be addressed by the application developer (and by the application-level protocol specification). Imagine that a client sends 10 different requests to a server (*the protocol allows the client to send a new request before it has received a response to the previous one*). Let us assume that the server receives the 10 requests and sends back 10 responses. Because of the properties of UDP, **we have no guarantee that the requests and the responses will be received in sequential order**. Hence, it is quite possible that the client will receive the reply number 6 before the reply number 2. How can that work? **How can the client make sense of that unordered flow of responses**? The answer is that some information needs to be added to the application-level messages, in order to associate a reply with a given request. This information is often referred to as a **correlation identifier**. The client has to generate a different correlation identifier for each request and the server has to include it in the corresponding response.
 
   Have a look at the [COAP RFC](http://tools.ietf.org/id/draft-ietf-core-coap-18.txt) to see what this means in practice. In the RFC, check out *Paragraph 5.3. Request/Response Matching*. What the COAP RFC authors call a *token* is nothing else than a correlation identifier.
-  
+
 * We will look at a third common pattern a bit later, which relies on multicast or broadcast, and which we will present in the context of **service discovery protocols**.
 
 ### 3.2. Making API Calls
 
 In **Java**, the API provides an **explicit abstraction** for dealing with datagrams: the `DatagramPacket` class. Developers use it both when sending and receiving UDP datagrams from their programs. Here are the important methods defined in the class, as defined in the [Javadoc](http://docs.oracle.com/javase/7/docs/api/java/net/DatagramPacket.html) documentation:
 
-```
+```java
 // Returns the IP address of the machine to which this datagram
 // is being sent or from which the datagram was received.
 public InetAddress getAddress();
 
-// Returns the port number on the remote host to which this 
+// Returns the port number on the remote host to which this
 // datagram is being sent or from which the datagram was received.
 public int getPort();
 
@@ -119,7 +119,7 @@ public byte[] getData();
 
 Furthermore, datagrams are sent and received via sockets that are instances of the [`DatagramSocket`](http://docs.oracle.com/javase/7/docs/api/java/net/DatagramSocket.html) class. Notice that the class provides several constructors. Let us compare two of them:
 
-```
+```java
 public DatagramSocket() throws SocketException;
 public DatagramSocket(int port) throws SocketException;
 ```
@@ -133,7 +133,7 @@ In the second constructor, we **specify a port number**. This means that we will
 As you remember, **applications that use TCP as a transport-layer protocol always see a pair of processes communicate with each other**. The server listens on a known port, the client makes a connection request on that port and when they are connected, they exchange data until the connection is closed. Standard one-to-one communication, which relies on [**unicast**](http://en.wikipedia.org/wiki/Unicast) data transmission. Another way to look at it is that the TCP segments that carry application-level messages are **always going to a single destination** (defined by the destination IP address and the destination port).
 
 From your study of the TCP/IP stack and of protocols such as [ARP](http://en.wikipedia.org/wiki/Address_Resolution_Protocol) (used to *discover* the MAC address corresponding to an IP address), you should remember that there are **other data transmission models** within a network of nodes:
- 
+
 * [**Broadcast**](http://en.wikipedia.org/wiki/Broadcasting_%28networking%29) is one of them, where **a message is distributed to all nodes in the network**. As an analogy, think of what happens when **your mailbox is flooded with commercials** (just like your neighbour's). You didn't ask to receive the commercials and the advertising business did not need to know you in order to send you the glossy brochure with weekly deals. Everybody living in the city got them.
 
 * [**Multicast**](http://en.wikipedia.org/wiki/Multicast) is another one, where **a message is distributed to all *interested* nodes in the network**. What does it mean for a node to *be interested* and how does it work in practice? Well, multicast protocols rely on the notion of *group*, which you can think of as **a kind of radio channel**. Just like music amateurs can decide to listen to particular radio channels, nodes in a network can decide to listen (i.e. *subscribe to*, *join*) to specific multicast groups. When other nodes (playing the role of the radio station) send messages to the group, then **all subscribers to that group will receive a copy of the message**.
@@ -144,7 +144,7 @@ Broadcast and multicast transmission models are very useful to implement certain
 
 In order to broadcast a UDP datagram to all nodes on the local network, simply use the `255.255.255.255` broadcast address in the destination address of your datagrams. Note that the socket has to be set in a mode where it agrees to send broadcast datagrams (to avoid accidental broadcast storms). Here is how you would do it in Java:
 
-```
+```java
 // Sending a message to all nodes on the local network
 
 socket = new DatagramSocket();
@@ -160,18 +160,18 @@ socket.send(datagram);
 
 And here is how you would do it in Node.js:
 
-```
+```javascript
 // Sending a message to all nodes on the local network
 
 var dgram = require('dgram');
 var s = dgram.createSocket('udp4');
 
 s.bind(0, '', function() {
-	s.setBroadcast(true);	
+	s.setBroadcast(true);
 });
 
 var payload = "Node.js rocks, everybody should know!";
-message = new Buffer(payload);	
+message = new Buffer(payload);
 
 s.send(message, 0, message.length, 4411, "255.255.255.255", function(err, bytes) {
   console.log("Sending ad: " + payload + " via port " + s.address().port);
@@ -181,7 +181,7 @@ s.send(message, 0, message.length, 4411, "255.255.255.255", function(err, bytes)
 
 On the other side, if you implement an application that should listen for and process broadcasted datagrams, you do not need to do anything special. Just bind a datagram socket on the application-specific port. Here is what you do in Java:
 
-```
+```java
 // Listening for broadcasted messages on the local network
 
 DatagramSocket socket = new DatagramSocket(port);
@@ -202,7 +202,7 @@ while (true) {
 
 And here is what you do in Node.js
 
-```
+```javascript
 // Listening for broadcasted messages on the local network
 
 var s = dgram.createSocket('udp4');
@@ -228,7 +228,7 @@ In order to use multicast instead of broadcast in your programs (which is strong
 
 Here is Java code for subscribing to a multicast group:
 
-```
+```java
 private InetAddress multicastGroup;
 int port;
 MulticastSocket socket;
@@ -247,7 +247,7 @@ public MulticastSubscriber(int port, InetAddress multicastGroup) {
 
 And here is the Node.js equivalent:
 
-```
+```javascript
 var dgram = require('dgram');
 var s = dgram.createSocket('udp4');
 
