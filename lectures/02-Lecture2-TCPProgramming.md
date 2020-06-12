@@ -238,7 +238,7 @@ To improve the situation and to be able to handle several clients concurrently, 
 
 The model works as follows: the server starts in a first process, which binds a socket and accepts incoming connection requests. **Each time a client makes a connection request, a child process is forked**. Since a child process inherits file descriptors from its parent, the new process has a socket that is ready to use for talking with the client. At this point, we thus have two processes that work in parallel: the parent does not care about the first client any more and can go back to listening for other clients, while the child can take care of the client and service its request.
 
-The following code snippet, which is part of the great [Beej's Guide to Network Programming](http://www.beej.us/guide/bgnet/output/html/multipage/index.html), shows how this can be implemented in C (the complete code is available [here](http://www.beej.us/guide/bgnet/output/html/multipage/clientserver.html#simpleserver)):
+The following code snippet, which is part of the great [Beej's Guide to Network Programming](http://beej.us/guide/bgnet/html/), shows how this can be implemented in C (the complete code is available [here](http://beej.us/guide/bgnet/html/#a-simple-stream-server)):
 
 ```
 printf("server: waiting for connections...\n");
